@@ -13,7 +13,7 @@ wsl --install -d Ubuntu
 After this step ubuntu will open for you and you just have to set up the unix user for you.
 ```
 wsl --set-default Ubuntu
-wsl --set-version 2
+wsl --set-version Ubuntu 2
 ```
 
 Download the docker package for windows and install
