@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  t2c-1:
+    container_name: t2c-1
+    build: .
+    volumes:
+    - t2v:/usr/src/data
+
+  t2c-2:
+    container_name: t2c-2
+    build: .
+    command: /bin/sh -c 'echo "sharing" >> ../data/save_file'
+    volumes:
+    - t2v:/usr/src/data
+
+volumes:
+  t2v:
+    external: true
