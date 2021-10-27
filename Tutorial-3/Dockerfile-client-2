@@ -1,0 +1,6 @@
+FROM ubuntu:latest
+
+RUN apt-get update && \
+    apt install -y curl
+
+ENTRYPOINT curl 172.17.0.2:1234

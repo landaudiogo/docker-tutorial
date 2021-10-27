@@ -1,7 +1,8 @@
 FROM busybox:latest
 
 RUN mkdir -p /usr/src/data && \
-    touch save_file
+    touch /usr/src/data/save_file && \
+    echo "first line" >> /usr/src/data/save_file
 
 VOLUME ["/usr/src/data"]
 

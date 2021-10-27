@@ -7,7 +7,6 @@ Some common use cases for volumes include:
 - persisting data between container runtimes
 
 As mentioned in the README.md file in the root directory of this repo, the VOLUME instruction indicates where there are going to be any mount points in the container's filesystem.
-If no options are provided during runtime with `-v` then it is initialized empty and a volume is created in the docker environment in the host computer.
 
 The Dockerfile indicates which directory is going to have a volume mounted to it.
 
@@ -40,7 +39,7 @@ docker run `
     --name t2c-2 `
     --volume t2v:/usr/src/data `
     t2i `
-    /bin/sh -c 'echo "sharing" > ../data/save_file'
+    /bin/sh -c 'echo "sharing" >> ../data/save_file'
 ```
 
 To check the docker volumes we have created:
@@ -57,6 +56,13 @@ docker-compose up
 
 ## Creating a host volume
 
+```
+docker run `
+    -it --rm `
+    --name t2c-1 `
+    --volume ${PWD}\data:/usr/src/data `
+    t2i
+```
 
 ```
 docker run `
@@ -67,13 +73,7 @@ docker run `
     /bin/sh -c 'echo "hello" >> ../data/save_file'
 ```
 
-```
-docker run `
-    -it --rm `
-    --name t2c-1 `
-    --volume ${PWD}\data:/usr/src/data `
-    t2i
-```
+
 
 ## Creating a host docker volume
 
@@ -87,16 +87,26 @@ Now we create the 2 containers that will access this volume, as if it were a doc
 ```
 docker run `
     -it --rm `
+    --name t2c-1 `
+    --volume t2v-2:/usr/src/data `
+    t2i
+```
+
+```
+docker run `
+    -it --rm `
     --name t2c-2 `
     --volume t2v-2:/usr/src/data `
     t2i `
     /bin/sh -c 'echo "hello" >> ../data/save_file'
 ```
 
+Now we clean up.
+First we delete the new data folder we created in this directory.
 ```
-docker run `
-    -it --rm `
-    --name t2c-1 `
-    --volume t2v-2:/usr/src/data `
-    t2i
+rd -r data
+rd -r test
+docker volume rm t2v
+docker-compose rm
+docker image rm tutorial-2_t2c-2 tutorial-2_t2c-1 t2i
 ```
