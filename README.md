@@ -89,18 +89,3 @@ In our case, this first tutorial will use the Python base image, add it another 
 ```python3 main.py```
 
 There are several types of commands that can be included in the Dockerfile, this link describes the list of commands that can be executed within the Dockerfile.
-
-# Tutorial 2
-
-# Tutorial 3
-
-# Tutorial 4 
-
-
-
-- Create a simple container
-- Volumes
-- Sharing volumes
-- Networking
-- Sharing Networks
-- Backup a Volume
